@@ -1,0 +1,53 @@
+MORE PLATFORMS - MAD GAMES TYCOON 2
+
+PORTUGUES
+
+Requisito: BepInEx 5 para Windows x64 (testado: 5.4.23.3).
+Download oficial:
+https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.3
+Escolha BepInEx_win_x64_5.4.23.3.zip, nao o pacote de codigo-fonte.
+
+PRIMEIRA INSTALACAO
+1. Feche o jogo. Na Steam: Gerenciar > Explorar arquivos locais.
+2. Se ainda nao tiver BepInEx, extraia o ZIP oficial nessa pasta,
+   ao lado de "Mad Games Tycoon 2.exe". Abra e feche o jogo uma vez.
+3. Extraia o ZIP MorePlatforms nessa mesma pasta e mescle BepInEx.
+4. Confirme: BepInEx/plugins/MorePlatforms.dll. Abra pela Steam.
+
+ATUALIZACAO
+Feche o jogo e extraia o novo ZIP no mesmo lugar, substituindo
+MorePlatforms.dll. Nao e preciso substituir BepInEx ou configuracoes.
+Mantenha apenas uma copia de MorePlatforms.dll na pasta plugins.
+
+USO
+Ao criar a campanha, configure "Maximo de plataformas por jogo" (4-16)
+na tela de mapa/configuracoes. Na tela de desenvolvimento, role a area
+dos cartoes para escolher as plataformas extras. F8 e opcional para
+mudar o limite durante uma campanha. O limite e salvo por campanha.
+
+REMOVER
+Feche o jogo e remova BepInEx/plugins/MorePlatforms.dll.
+Nao salve por cima de uma campanha com plataformas extras sem o mod:
+o jogo original so preserva quatro. Faca backup dos saves antes de usar.
+
+LIMITES
+Single-player. Sem extras em contratos, exclusivos e arcades.
+Algumas telas mostram apenas quatro icones; bundles e alguns bonus
+especializados continuam sujeitos as regras originais.
+Interface do mod em portugues. Este pacote nao inclui BepInEx.
+
+ENGLISH
+
+Requires BepInEx 5, Windows x64 (tested: 5.4.23.3, official link above).
+Close the game. Install BepInEx into the folder containing the game's
+EXE, launch once, then close. Extract this mod ZIP into the same folder.
+The final path must be BepInEx/plugins/MorePlatforms.dll.
+Launch through Steam. To update, replace that DLL with the game closed.
+
+Choose a 4-16 platform limit on the new-campaign map/settings screen.
+Scroll the platform cards during development to select extra platforms.
+The limit is stored per campaign. Mod-specific labels are in Portuguese.
+Single-player only. No extra slots for contracts, exclusives or arcades.
+Some legacy displays and specialized mechanics still use four platforms.
+Back up your saves. Do not overwrite an extended-platform save after
+removing the mod: the unmodified game only saves four platforms.

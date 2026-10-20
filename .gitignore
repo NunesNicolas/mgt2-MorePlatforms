@@ -1,0 +1,14 @@
+.tools/
+.work/
+build/
+backups/
+*.user
+dist/
+.buildrefs/
+private-build-references/
+*.dll
+*.exe
+*.sav
+*.zip
+*.log
+*.cfg

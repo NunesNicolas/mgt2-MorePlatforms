@@ -1,0 +1,20 @@
+{
+  "compile": [
+    "Mad Games Tycoon 2_Data/Managed/mscorlib.dll",
+    "Mad Games Tycoon 2_Data/Managed/netstandard.dll",
+    "Mad Games Tycoon 2_Data/Managed/System.dll",
+    "Mad Games Tycoon 2_Data/Managed/System.Core.dll",
+    "BepInEx/core/BepInEx.dll",
+    "BepInEx/core/0Harmony.dll",
+    "Mad Games Tycoon 2_Data/Managed/Assembly-CSharp.dll",
+    "Mad Games Tycoon 2_Data/Managed/Assembly-CSharp-firstpass.dll",
+    "Mad Games Tycoon 2_Data/Managed/UnityEngine.dll",
+    "Mad Games Tycoon 2_Data/Managed/UnityEngine.CoreModule.dll",
+    "Mad Games Tycoon 2_Data/Managed/UnityEngine.IMGUIModule.dll",
+    "Mad Games Tycoon 2_Data/Managed/UnityEngine.InputLegacyModule.dll",
+    "Mad Games Tycoon 2_Data/Managed/UnityEngine.UI.dll",
+    "Mad Games Tycoon 2_Data/Managed/UnityEngine.UIModule.dll",
+    "Mad Games Tycoon 2_Data/Managed/UnityEngine.TextRenderingModule.dll"
+  ],
+  "verification": ["BepInEx/core/Mono.Cecil.dll"]
+}

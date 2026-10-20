@@ -1,0 +1,85 @@
+name: Build release packages
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: powershell
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check private reference configuration
+        env:
+          REFERENCE_REPO: ${{ vars.BUILD_REFERENCES_REPO }}
+          REFERENCE_SHA: ${{ vars.BUILD_REFERENCES_SHA }}
+          REFERENCE_TOKEN: ${{ secrets.BUILD_REFERENCES_TOKEN }}
+        run: |
+          if ($env:REFERENCE_REPO -notmatch '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$' -or
+              $env:REFERENCE_SHA -notmatch '^[0-9a-fA-F]{40}$' -or !$env:REFERENCE_TOKEN) {
+            throw 'Configure BUILD_REFERENCES_REPO, BUILD_REFERENCES_SHA e BUILD_REFERENCES_TOKEN. Veja docs/PUBLISHING.md.'
+          }
+      - name: Fetch pinned private build references
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ vars.BUILD_REFERENCES_REPO }}
+          ref: ${{ vars.BUILD_REFERENCES_SHA }}
+          token: ${{ secrets.BUILD_REFERENCES_TOKEN }}
+          path: .buildrefs
+          persist-credentials: false
+      - name: Build, verify and package
+        env:
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          $expected = ''
+          if ($env:REF_TYPE -eq 'tag') {
+            if ($env:REF_NAME -notmatch '^v\d+\.\d+\.\d+$') { throw 'Use tags vX.Y.Z.' }
+            $expected = $env:REF_NAME.Substring(1)
+          }
+          .\package.ps1 -GamePath "$env:GITHUB_WORKSPACE\.buildrefs" -ExpectedVersion $expected
+      - name: Upload public packages only
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: moreplatforms-release
+          path: |
+            dist/MorePlatforms-*.zip
+            dist/SHA256SUMS.txt
+            dist/RELEASE-NOTES.md
+          if-no-files-found: error
+          retention-days: 30
+
+  draft-release:
+    needs: build
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - name: Create draft release with tested packages
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh run download "$RUN_ID" --name moreplatforms-release --dir dist
+          gh release create "$TAG" dist/*.zip dist/SHA256SUMS.txt \
+            --verify-tag --draft --title "More Platforms $TAG" \
+            --notes-file dist/RELEASE-NOTES.md

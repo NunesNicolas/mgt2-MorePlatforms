@@ -1,0 +1,49 @@
+More Platforms - Configurable Platform Limit
+
+Develop games for 4 to 16 platforms in Mad Games Tycoon 2.
+
+FEATURES
+- Set the platform limit on the new-campaign map/settings screen.
+- Extra platform cards appear in the original development screen, in two columns.
+- Scroll with the mouse wheel or scrollbar to reach the extra slots.
+- The limit and extra platforms are stored per campaign.
+- F8 remains an optional shortcut for changing the limit during a campaign.
+
+REQUIREMENTS
+Mad Games Tycoon 2 on Windows x64.
+BepInEx 5, tested with 5.4.23.3:
+https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.3
+Tested against Steam build 20855306. Mod-specific labels are in Portuguese.
+
+INSTALLATION
+1. Close the game.
+2. Open its installation folder through Steam > Manage > Browse local files.
+3. If needed, extract BepInEx_win_x64_5.4.23.3.zip there, next to the game EXE.
+   Start and close the game once.
+4. Extract the MorePlatforms ZIP into the same folder, merging BepInEx.
+5. Verify BepInEx/plugins/MorePlatforms.dll exists, then launch through Steam.
+
+UPDATING
+Close the game and extract the newer mod ZIP into the same folder, replacing the
+old MorePlatforms.dll. Keep only one copy. Your configuration is not included
+in the download and is not replaced by this update process.
+
+SAVE SAFETY AND UNINSTALLING
+Back up your saves before first use. To remove the mod, close the game and remove
+BepInEx/plugins/MorePlatforms.dll. Do not overwrite an extended-platform campaign
+after uninstalling: the unmodified game saves only four platforms.
+
+LIMITATIONS / INITIAL TESTING RELEASE
+Single-player only. No extra slots for contract, exclusive or arcade projects.
+Some legacy screens display only four platform icons. The original platform-change
+screen preserves extras but edits only the first four. Bundles and some specialized
+bonuses/statistics retain their original rules.
+
+Compilation, patch checks, persistence-format tests and isolated Unity UI tests
+passed locally. Full campaign development, release and save/reload testing is still
+pending. Report the game version and relevant BepInEx/LogOutput.log errors if an
+issue occurs; remove private information before posting logs.
+
+This download does not include BepInEx, original game assemblies or UnlimitedPorts.
+UnlimitedPorts is a separate mod, not a requirement. Loading both was checked;
+complete feature compatibility has not been established.
